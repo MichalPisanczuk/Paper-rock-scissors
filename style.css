@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+}
+
+.container {
+    background-color: #ffea00;
+    padding: 20px;
+    width: 90vw;
+    height: 50vh;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.papper, .rock, .scissors {
+    margin: 20px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+button {
+    background-color: white;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin: 0 20px;
+}
+
+.scors {
+    text-align: center;
+    width: 50%;
+    margin: 30px auto;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 22px;
+}
