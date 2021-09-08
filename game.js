@@ -1,37 +1,54 @@
-const papper = document.querySelector('.papper');
+const paper = document.querySelector('.paper');
 const rock = document.querySelector('.rock');
 const scissors = document.querySelector('.scissors');
 const startBtn = document.querySelector('button');
 const resetBtn = document.querySelector('.reset');
 const scores = document.querySelector('.scors');
+const gameScore = document.createElement('span');
+const choice = document.createElement('span');
 let playerChoice = "";
 let computerChoice = "";
-const computerArr = ['papper', 'rock', 'scissors'];
+const computerArr = ['paper', 'rock', 'scissors'];
 let games = 0;
 let playerWins = 0;
 let computerWins = 0;
 let draws = 0;
 
-function choicePapper() {
-    playerChoice = 'papper';
-    const choice = document.createElement('span');
-    gameScore.textContent = `papper`;
-    scores.appendChild(choice);
+function choicePaper() {
+    paper.style.boxShadow = '0 0 10px 6px grey';
+    rock.style.boxShadow = '';
+    scissors.style.boxShadow = '';
+    return choiceRender(playerChoice = 'paper');
 }
 
 function choiceRock() {
-    playerChoice = 'rock';
+    rock.style.boxShadow = '0 0 10px 6px grey';
+    paper.style.boxShadow = '';
+    scissors.style.boxShadow = '';
+    return choiceRender(playerChoice = 'rock');
+
 }
 
 function choiceScissors() {
-    playerChoice = 'scissors';
+    scissors.style.boxShadow = '0 0 10px 6px grey';
+    rock.style.boxShadow = '';
+    paper.style.boxShadow = '';
+    return choiceRender(playerChoice = 'scissors');
+
+}
+
+function choiceRender(playerHand) {
+    scores.textContent = "";
+    choice.textContent = `Player hand is: ${playerHand}`;;
+    scores.appendChild(choice);
 }
 
 function startGame() {
-    if (playerChoice === "") alert(`Choice your hand`);
+    if (playerChoice != "") {
+        gameScore.textContent = "";
     computerChoice = computerArr[Math.floor(Math.random() * (3 - 0))];
     games++;
-    if (computerChoice === 'papper') {
+    if (computerChoice === 'paper') {
         if (playerChoice === 'scissors') {
             playerWins++;
         } else if (playerChoice === 'rock') {
@@ -40,7 +57,7 @@ function startGame() {
             draws++;
         }
     } else if (computerChoice === 'rock') {
-        if (playerChoice === 'papper') {
+        if (playerChoice === 'paper') {
             playerWins++;
         } else if (playerChoice === 'scissors') {
             computerWins++;
@@ -48,7 +65,7 @@ function startGame() {
             draws++;
         }
     } else {
-        if (playerChoice === 'papper') {
+        if (playerChoice === 'paper') {
             computerWins++;
         } else if (playerChoice === 'rock'){
             playerWins++;
@@ -57,17 +74,13 @@ function startGame() {
         }
     }
     generateScore();
+} else {
+    alert('Choice your hand!');
+}
 }
 
 function generateScore() {
-    console.log('player: ' + playerChoice);
-    console.log('computer: ' + computerChoice);
-    console.log('ilość gier: ' + games);
-    console.log('player wins: ' + playerWins);
-    console.log('computer wins: ' + computerWins);
-    console.log('draws: ' + draws);
-    const gameScore = document.createElement('span');
-    gameScore.textContent = `dupa`;
+    gameScore.innerHTML = `<br />Computer hand is: ${computerChoice} <br />Games: ${games} <br /> Player wins: ${playerWins} <br />Computer Wins ${computerWins} <br />Draws: ${draws}`;
     scores.appendChild(gameScore);
 }
 
@@ -77,9 +90,15 @@ function resetGame() {
     games = 0;
     playerChoice = "";
     computerChoice = "";
+    draws = 0;
+    gameScore.textContent = "";
+    rock.style.boxShadow = '';
+    paper.style.boxShadow = '';
+    scissors.style.boxShadow = '';
+    choice.textContent = '';
 }
 
-papper.addEventListener('click', choicePapper);
+paper.addEventListener('click', choicePaper);
 rock.addEventListener('click', choiceRock);
 scissors.addEventListener('click', choiceScissors);
 
