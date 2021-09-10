@@ -1,2 +1,2 @@
 # Paper-rock-scissors
-# Simply game wrote in JAvaScript
+# Simply game wrote in JavaScript
